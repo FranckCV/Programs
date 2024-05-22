@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Finanzas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Gestor de Finanzas</h1>
+        <nav>
+            <ul>
+                <li><a href="#"><i class="fas fa-home"></i> Inicio</a></li>
+                <li><a href="#"><i class="fas fa-exchange-alt"></i> Transacciones</a></li>
+                <li><a href="#"><i class="fas fa-chart-line"></i> Reportes</a></li>
+                <li><a href="#"><i class="fas fa-cog"></i> Configuración</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section>
+            <div class="container">
+                <h2>Transacciones Recientes</h2>
+                <button id="addButton">Agregar Transacción <i class="fas fa-plus"></i></button>
+            </div>
+    
+            <ul class="transactions-list">
+                
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Gestor de Finanzas</p>
+    </footer>
+
+    <div id="transactionModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <!-- Aquí va el formulario para agregar/editar transacciones -->
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

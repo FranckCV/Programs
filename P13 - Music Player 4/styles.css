@@ -1,0 +1,68 @@
+body {
+    background-color: #222;
+    color: #fff;
+    font-family: 'Raleway', sans-serif;
+    padding: 20px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.playlist, .player {
+    background-color: #333;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.playlist h2, .player h2 {
+    margin-bottom: 10px;
+}
+
+.playlist ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.playlist li {
+    background-color: #444;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.playlist li:hover {
+    background-color: #555;
+    color: #ccc;
+}
+
+.controls {
+    margin-top: 10px;
+}
+
+.controls button {
+    background-color: #555;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    margin: 0 5px;
+    border-radius: 5px;
+}
+
+.controls button:hover {
+    background-color: #777;
+}
+
+/* Reproductor fijo */
+#player {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: calc(100% - 40px);
+    max-width: 300px;
+}

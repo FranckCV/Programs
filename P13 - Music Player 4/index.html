@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reproductor de Música</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="playlist">
+            <h2>Lista de Reproducción</h2>
+            <ul id="playlist" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
+            <input type="file" id="fileInput" multiple>
+        </div>
+        <div class="player" id="player">
+            <h2>Reproductor</h2>
+            <audio id="audioPlayer" controls></audio>
+            <div class="controls">
+                <button id="prevButton"><i class="fa fa-step-backward"></i></button>
+                <button id="playPauseButton"><i class="fa fa-play"></i></button>
+                <button id="stopButton"><i class="fa fa-stop"></i></button>
+                <button id="nextButton"><i class="fa fa-step-forward"></i></button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+:root
+{
+    --bg: #0d0e0f;
+    --div: #2c2f33;
+    --mp4: #c50052;
+    --mp3: #0043b6;
+    --palet: #300d60;
+}
+body 
+{
+    /* display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: var(--bg);
+    flex-direction: column; */
+
+    background-color: var(--bg); 
+    color: white; 
+    padding-inline: 60px; 
+    padding-block: 20px; 
+    font-family: Arial, Helvetica, sans-serif; 
+    font-size: 80%;
+}
+.title
+{
+    background-color: var(--palet); 
+    border-radius: 25px; 
+    padding: 2px; 
+    border: 2px solid #ffffff;
+    text-align: center; 
+    color: white;
+}
+.container
+{
+    font-size: 15px;
+    background-color: var(--div); 
+    border-radius: 25px; 
+    padding: 25px; 
+    border: 2px solid var(--palet); 
+    text-align: center;
+}
+.textfield
+{
+    width: 300px; 
+    border-color: var(--palet);
+    border-radius: 25px;
+    padding-inline: 5px;
+}
+.btn
+{
+    color: #ffffff; 
+    border-color: #ffffff;     
+    padding-block: 15px; 
+    padding-inline: 20px; 
+    border-radius: 25px;
+}
+#btn_mp4
+{
+    background-color: var(--mp4);
+}
+#btn_mp3
+{
+    background-color: var(--mp3);
+}
+.downloads
+{
+    font-size: 12px;
+    padding: 5px;
+    background-color: var(--div); 
+    border-radius: 25px; 
+    border: 2px solid var(--palet); 
+    text-align: center;
+}
+
+
+

@@ -1,0 +1,15 @@
+/* Estilos para la tabla y celdas */
+#schedule {
+    border-collapse: collapse;
+}
+
+#schedule td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    cursor: pointer;
+}
+
+/* Estilo para la celda seleccionada */
+.selected {
+    background-color: #ffff99;
+}

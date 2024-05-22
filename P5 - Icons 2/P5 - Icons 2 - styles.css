@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Raleway:wght@100&display=swap');
+
+body
+{
+    background-color: #222;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.container_11
+{
+    width: 1100px;
+    height: 1000px;
+    align-items: center;
+    background-color: rgba(255, 0, 0, 0.37);
+    align-content: center;
+    border-radius: 50px;
+    margin: 70px;
+}
+
+.container_1
+{
+    width: 1100px;
+    height: 500px;
+    align-items: center;
+    align-content: center;
+    margin: 70px;
+    position: relative;
+    display: flex;
+    gap: 35px;
+}
+.container_1 div
+{
+    position: relative;
+    float: left;
+    width: 80px;
+    height: 80px;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.container_1 div:hover
+{
+    z-index: 100;
+    transform: scale(1.2);
+}
+
+.container_1 div::before
+{
+    content: '';
+    position: absolute;
+    inset: 30px;
+    box-shadow: 0 0 0 10px var(--clr),
+    0 0 0 20px var(--bg),
+    0 0 0 22px var(--clr);
+    transition: 0.5s;
+}
+
+.container_1 div:hover::before
+{
+    inset: 0px;
+}
+
+.container_1 div::after
+{
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--bg);
+    transform: rotate(45deg);
+}
+
+.container_1 div a
+{
+    position: relative;
+   
+    color: var(--clr);
+    z-index: 10;
+    font-size: 2em;
+    transition: 0.5s;
+    float: left;
+
+}
+.container_1 div:hover a
+{
+    font-size: 3em;
+    filter: drop-shadow(0 0 20px var(--clr)) drop-shadow(0 0 40px var(--clr)) drop-shadow(0 0 60px var(--clr))
+}
+
+
+
+
+
+
+
+.boxx
+{
+    background-color: rgb(0, 132, 255);
+    width: 100px;
+    height: 100px;
+    margin: 5px;
+    float: left;
+    font-family: "raleway",sans-serif;
+    font-size: 3em;
+    font-weight: 800;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100px;
+
+}
+
+

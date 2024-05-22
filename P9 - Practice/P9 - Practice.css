@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Raleway:wght@100&display=swap');
+
+:root {
+    --bg1: #3c1597;
+    --gray: #797d7f;
+    --bg2: #00648b;
+    
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Raleway", sans-serif;
+}
+
+img {
+    max-width: 100%;
+    background-color: aquamarine;
+}
+
+.container {
+    background-color: var(--bg1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.player{
+    width: 300px;
+    height: 550px;
+    background-color: var(--bg2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    box-shadow: 9px 9px 16px rgba(45, 0, 128, 0.6), 
+    -9px -9px 16px rgba(10, 0, 66, 0.425);
+}
+
+.player__btn {
+    cursor: pointer;
+    border-radius: 56%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: -8px -8px 20px 0px #fff9 ,  -6px -6px 8px 8px 20px #0001 , 5px 5px 6px 0px #0001; 
+    color: var(--gray);
+}

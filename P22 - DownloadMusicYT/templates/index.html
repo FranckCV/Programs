@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/download_icon.png') }}" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="../static/css/styles2.css">
+    <title>Downloader</title>
+</head>
+<body>
+    <div class="title">
+        <h1>Descargar desde YouTube</h1>
+    </div>    
+    <br>    
+    <div class="container">
+        <label for="url">Inserte enlace:</label>
+        <input type="text" name="url" id="url" class="textfield" required>
+        <br><br>
+        <button id="btn_mp4" type="button" class="btn" onclick="download('video')">Descargar mp4</button>
+        <button id="btn_mp3" type="button" class="btn" onclick="download('audio')">Descargar mp3</button>
+    </div>
+    <br>
+    <div class="downloads">
+        <h2>Descargas realizadas</h2>
+        <ul id="downloadList"></ul>
+    </div>
+
+    <script>
+        function download(type) {
+            var url = document.getElementById('url').value;
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/download', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    var response = JSON.parse(xhr.responseText);
+                    if (response.success) {
+                        var downloadList = document.getElementById('downloadList');
+                        var listItem = document.createElement('li');
+                        listItem.textContent = response.message + ': ' + response.filename;
+                        downloadList.appendChild(listItem);
+                    } else {
+                        alert(response.message);
+                    }
+                }
+            };
+            var data = 'url=' + url + '&type=' + type;
+            xhr.send(data);
+        }
+    </script>
+
+</body>
+</html>
+
+
+

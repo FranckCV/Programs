@@ -1,0 +1,225 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #161624;
+    color: #ffffff;    
+}
+
+header {
+    background-color: #131313;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 24px;
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+nav ul li {
+    margin: 0 10px;
+}
+
+nav ul li a {
+    color: #9e9e9e;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    color: #6bb8ff;
+}
+
+nav ul li i {
+    padding: 10px;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between; /* Alinear elementos a los extremos */
+    align-items: center; /* Centrar verticalmente los elementos */
+    height: 10vh;
+    padding: 0 10px; /* Agregar relleno a los lados para separar del borde */
+}
+
+#addButton {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: #161550;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.1s;
+}
+
+#addButton:hover {
+    background-color: #fff;
+    color:#161550;
+    font-size: 16px;
+}
+
+#addButton i {
+    margin-left: 5px;
+}
+
+main {
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 20px;
+}
+
+section .container h2 {
+    font-size: 20px;
+    margin: 0; /* Eliminar el margen para evitar espacios adicionales */
+}
+
+.transaction {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: #272727;
+    transition: 0.05s;
+    position: relative;
+}
+
+.transaction + .transaction {
+    margin-top: 10px; /* Agrega un margen superior entre cada .transaction */
+}
+
+.transaction:hover {
+    background-color: #286299;
+    color:#fff;
+}
+
+.transaction span {
+    flex: 1;
+    text-align: center;
+    position: relative;
+}
+
+.transaction span::before {
+    content: ""; /* Agregar un contenido vacío para el seudoelemento */
+    position: absolute;
+    left: 0;
+    top: 50%; /* Colocar la línea en el centro vertical */
+    width: 100%;
+    height: 1px; /* Definir el grosor de la línea */
+    background-color: #9c0000; /* Color de la línea */
+    z-index: -1; /* Colocar la línea detrás de los elementos span */
+    transform: translateY(-50%);
+}
+
+.transaction span:first-child::before {
+    display: none; /* Oculta la línea antes del primer span */
+}
+
+.transaction span:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: calc(100% - 20px); /* Ajustar el ancho para evitar superposición */
+    height: 1px;
+    background-color: #9c0000;
+    z-index: -1;
+    transform: translateY(-50%);
+}
+
+.transactions-list {
+    padding: 15px 20px;
+    border: none;
+    border-radius: 10px;
+    align-items: center;
+    height: 55vh;
+    background-color: #333;
+}
+
+.options-menu {
+    display: none;
+    position: relative;
+    top: 10px;
+    right: 10px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+.options-menu ul {
+    list-style-type: square;
+}
+
+.options-menu ul li {
+    padding: 10px;
+    color:#131313
+}
+
+.options-icon {
+    cursor: pointer;
+    position: relative;
+}
+
+.dropdown-item {
+    color: black;
+}
+
+/* Pie de Página */
+footer {
+    background-color: #0c0c0c;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #313131;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    border-radius: 10px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
