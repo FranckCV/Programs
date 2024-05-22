@@ -1,7 +1,0 @@
-jsonp1248({
-  "error" : "access_denied",
-  "site_cookie_domain" : ".elcomercio.pe",
-  "email_confirmation_required" : null,
-  "extend_expired_access_enabled" : false,
-  "authorized_by_sso" : true
-})
