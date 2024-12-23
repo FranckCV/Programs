@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Font Awesome Icon Picker plugin for Bootstrap</title>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" rel="stylesheet">
+    <link href="dist/css/fontawesome-iconpicker.min.css" rel="stylesheet">
+    
+</head>
+
+<body>
+    <div class="container" style="text-align: center">
+        
+        <div class="form-group">
+            <label>As a component</label>
+
+            <div class="input-group">
+                <input data-placement="bottomRight" class="form-control icp icp-auto" value="fas fa-archive"
+                        type="text"/>
+                <span class="input-group-addon"></span>
+            </div>
+        </div>
+
+
+    </div>
+
+<script src="//code.jquery.com/jquery-2.2.1.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="dist/js/fontawesome-iconpicker.js"></script>
+<script>
+  $(function () {
+
+   
+    $('.icp-auto').iconpicker();
+
+    $('.icp-dd').iconpicker({
+    });
+
+    $('.icp-opts').iconpicker({
+        title: 'With custom options',
+        icons: [
+          {
+            title: "fab fa-github",
+            searchTerms: ['repository', 'code']
+          },
+          {
+            title: "fas fa-heart",
+            searchTerms: ['love']
+          },
+          {
+            title: "fab fa-html5",
+            searchTerms: ['web']
+          },
+          {
+            title: "fab fa-css3",
+            searchTerms: ['style']
+          }
+        ],
+        selectedCustomClass: 'label label-success',
+        mustAccept: true,
+        placement: 'bottomRight',
+        showFooter: true,
+        // note that this is ignored cause we have an accept button:
+        hideOnSelect: true,
+        // fontAwesome5: true,
+        templates: {
+          footer: '<div class="popover-footer">' +
+            '<div style="text-align:left; font-size:12px;">Placements: \n\
+            <a href="#" class=" action-placement">inline</a>\n\
+            <a href="#" class=" action-placement">topLeftCorner</a>\n\
+            <a href="#" class=" action-placement">topLeft</a>\n\
+            <a href="#" class=" action-placement">top</a>\n\
+            <a href="#" class=" action-placement">topRight</a>\n\
+            <a href="#" class=" action-placement">topRightCorner</a>\n\
+            <a href="#" class=" action-placement">rightTop</a>\n\
+            <a href="#" class=" action-placement">right</a>\n\
+            <a href="#" class=" action-placement">rightBottom</a>\n\
+            <a href="#" class=" action-placement">bottomRightCorner</a>\n\
+            <a href="#" class=" active action-placement">bottomRight</a>\n\
+            <a href="#" class=" action-placement">bottom</a>\n\
+            <a href="#" class=" action-placement">bottomLeft</a>\n\
+            <a href="#" class=" action-placement">bottomLeftCorner</a>\n\
+            <a href="#" class=" action-placement">leftBottom</a>\n\
+            <a href="#" class=" action-placement">left</a>\n\
+            <a href="#" class=" action-placement">leftTop</a>\n\
+            </div><hr></div>'
+        }
+    }).data('iconpicker').show();
+
+    $('.icp').on('iconpickerSelected', function (e) {
+      $('.lead .picker-target').get(0).className = 'picker-target fa-3x ' +
+        e.iconpickerInstance.options.iconBaseClass + ' ' +
+        e.iconpickerInstance.options.fullClassFormatter(e.iconpickerValue);
+    });
+});
+
+</script>
+</body>
+
+</html>

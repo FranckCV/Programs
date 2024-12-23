@@ -1,0 +1,20 @@
+.container {
+    width: 90%;
+    margin: auto;
+    text-align: center;
+}
+#paginate {
+    display: inline-block;
+}
+.page-link {
+    margin: 10px;
+    font-size: 22px;
+    padding: 4px;
+}
+.page-link a {
+    text-decoration: none;
+}
+
+.next-link {
+    display: inline-block;
+}

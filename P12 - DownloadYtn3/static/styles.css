@@ -1,72 +1,58 @@
-*
-{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: consolas;
-    color: #fff;
-    font-size: 101%;
+:root {
+    --bg: #0d0e0f;
+    --div: #2c2f33;
+    --mp4: #c50052;
+    --mp3: #0043b6;
+    --palet: #300d60;
 }
-body 
-{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background: #222;
-}
-form {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    background-color: #000000;
-    height: 100%;
-}
-.container 
-{
-    margin: 0 auto;
-    width: 90%;
-    height: 50vh;
-    text-align: center;
-    background-color: #161616;
-}
-input [type="text"] 
-{
-    padding: 5px;
-    width: 300px;
-    /* margin-bottom: 10px; */
-}
-select 
-{
-    padding: 5px;
-    /* margin-bottom: 10px; */
-}
-button 
-{
-    padding: 5px 10px;
-    background-color: #4CAF50;
+body {
+    background-color: var(--bg);
     color: white;
-    border: none;
-    cursor: pointer;
+    padding-inline: 60px;
+    padding-block: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 80%;
 }
-button:hover 
-{
-    background-color: #235226;
+.title1 {
+    background-color: var(--palet);
+    border-radius: 25px;
+    padding: 2px;
+    border: 2px solid #ffffff;
+    text-align: center;
+    color: white;
 }
-select,
-option,
-input 
-{
-    color: #000000;
+.container {
+    font-size: 15px;
+    background-color: var(--div);
+    border-radius: 25px;
+    padding: 25px;
+    border: 2px solid var(--palet);
+    text-align: center;
 }
-#progressBar 
-{
-    width: 100%;
-    height: 20px;
-    margin-top: 20px;
+.textfield {
+    width: 300px;
+    border-color: var(--palet);
+    border-radius: 25px;
+    padding-inline: 5px;
 }
+.btn {
+    color: #ffffff;
+    border-color: #ffffff;
+    padding-block: 15px;
+    padding-inline: 20px;
+    border-radius: 25px;
+}
+#btn_download {
+    background-color: var(--mp4);
+}
+.downloads {
+    font-size: 12px;
+    background-color: var(--div);
+    border-radius: 25px;
+    border: 2px solid var(--palet);
+    text-align: center;
+}
+
 
 
 /*

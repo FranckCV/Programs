@@ -26,4 +26,65 @@
 </body>
 </html>
 
+<!-- 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/download_icon.png" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}" />
+    <title>Downloader</title>
+</head>
+<body>
+    <div class="title1">
+        <h1>Descargar desde YouTube</h1>
+    </div>
+    <br>
+    <div class="container">
+        <label for="url">Inserte enlace:</label> &nbsp; &nbsp;
+        <input type="text" name="url" id="url" class="textfield" required>
+        <br>
+        <br>
+        <label for="format">Formato:</label> &nbsp; &nbsp;
+        <select name="format" id="format" class="textfield" required>
+            <option value="video">MP4</option>
+            <option value="audio">MP3</option>
+        </select>
+        <br>
+        <br>
+        <button id="btn_download" class="btn" onclick="download()">Descargar</button>
+    </div>
+    <br>
+    <div class="downloads">
+        <h2>Descargas realizadas</h2>
+        {% if message %}
+            <p>{{ message }}</p>
+        {% endif %}
+    </div>
+    <script>
+        function download() {
+            var url = document.getElementById("url").value;
+            var format = document.getElementById("format").value;
+            var form = document.createElement("form");
+            form.setAttribute("method", "post");
+            form.setAttribute("action", "/download");
 
+            var hiddenUrlField = document.createElement("input");
+            hiddenUrlField.setAttribute("type", "hidden");
+            hiddenUrlField.setAttribute("name", "url");
+            hiddenUrlField.setAttribute("value", url);
+            form.appendChild(hiddenUrlField);
+
+            var hiddenFormatField = document.createElement("input");
+            hiddenFormatField.setAttribute("type", "hidden");
+            hiddenFormatField.setAttribute("name", "format");
+            hiddenFormatField.setAttribute("value", format);
+            form.appendChild(hiddenFormatField);
+
+            document.body.appendChild(form);
+            form.submit();
+        }
+    </script>
+</body>
+</html> -->
