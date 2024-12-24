@@ -1,0 +1,39 @@
+
+th,
+td {
+    border: 1px solid black;
+    width: 200px;
+    text-align: center;
+    font-size: 80%;
+}
+
+p {
+    margin: 0;
+    background-color: #00aeff1e;
+    width: min-content;
+    padding-inline: 10px;
+    padding-block: 5px;
+    border-radius: 10px;
+}
+
+.cell {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+td {
+    height: 40px;
+}
+
+th {
+    background-color: black;
+}
+
+.space_hour {
+    background-color: #0000004b;
+}
+

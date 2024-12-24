@@ -1,0 +1,79 @@
+.general_body {
+    display: grid;
+    grid-template-columns: 10vw auto;
+    grid-template-areas: "body_header body_header"
+                         "body_aside body_section"
+                         "body_footer body_footer"
+    ;
+    /* min-height: 100vh; */
+    background-color: var(--color-background);
+}
+
+.general_element {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+header {
+    background-color: var(--color1);
+    grid-area: body_header;
+    min-height: 10vh;
+    /* min-height: var(--height-header); */
+    width: 100%;
+    position: sticky; 
+    z-index: 9999;
+    top: 0;
+    gap: 20px;
+}
+
+aside {
+    background-color: var(--color2);
+    min-height: var(--height-aside);
+    grid-area: body_aside;
+    /* min-height: auto; */
+}
+
+section {
+    /* background-color: var(--color3); */
+    min-height: var(--height-section);
+    /* min-height: 60vh; */
+    grid-area: body_section;
+    padding: 30px;
+}
+
+footer {
+    background-color: var(--color4);
+    grid-area: body_footer;   
+    min-height: 10vh;
+    /* min-height: var(--height-footer); */
+}
+
+
+/* HEADER */
+
+.header_item {
+    border-radius: 10px;
+    background-color: var(--color2);
+    padding-inline: 10px;
+    padding-block: 10px;
+    text-decoration: none;
+    color: white;
+}
+
+/* ASIDE */
+
+
+
+/* SECTION */
+
+section.general_element {
+    color: white;
+}
+
+/* FOOTER */
+
+
+.asdsad {
+    color: rgb(255, 255, 0);
+}

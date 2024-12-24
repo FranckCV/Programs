@@ -1,0 +1,50 @@
+{% extends "maestra_general.html" %}
+
+{% block titulo %}
+Horario
+{% endblock %}
+
+{% block estilos %}
+<link rel="stylesheet" href="/static/css/horario.css">
+{% endblock %}
+
+{% block contenido %}
+<table>
+    <thead>
+        <th>Horas</th>
+        <th>Domingo</th>
+        <th>Lunes</th>
+        <th>Martes</th>
+        <th>Miercoles</th>
+        <th>Jueves</th>
+        <th>Viernes</th>
+        <th>Sábado</th>
+    </thead>
+    <tbody>
+        {% for hora in range(24) %}
+        <tr>
+            <td>
+                <div class="cell space_hour">
+                    {{hora}}:00
+                </div>
+            </td>
+            {% for dia in range(7) %}
+            <td>
+                <div class="cell">
+                    {% for tiempo in horarios %}
+                    {% if tiempo.1 == dia and (tiempo.2 <= hora and tiempo.3> hora) %}
+                        <p style="background-color: {{tiempo.8}}">{{tiempo.7}}</p>
+                        {% endif %}
+                        {% endfor %}
+                </div>
+            </td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/general_script.js"></script>
+{% endblock %}

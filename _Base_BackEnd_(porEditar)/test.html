@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Konva.js Example</title>
+</head>
+<body>
+  <div id="container"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/konva@8.4.2/konva.min.js"></script>
+  <script>
+    // Crear un stage (escenario) que contendrá todo
+    const stage = new Konva.Stage({
+      container: 'container', // ID del div donde se renderizará
+      width: window.innerWidth,
+      height: window.innerHeight,
+    });
+
+    // Crear una capa para dibujar elementos
+    const layer = new Konva.Layer();
+    stage.add(layer);
+
+    // Dibujar un círculo
+    const circle = new Konva.Circle({
+      x: stage.width() / 2,
+      y: stage.height() / 2,
+      radius: 50,
+      fill: 'blue', // Color de relleno
+      stroke: 'black', // Color del borde
+      strokeWidth: 4, // Grosor del borde
+    });
+
+    // Agregar el círculo a la capa
+    layer.add(circle);
+
+    // Renderizar la capa
+    layer.draw();
+    circle.draggable(true);
+
+  </script>
+</body>
+</html>
