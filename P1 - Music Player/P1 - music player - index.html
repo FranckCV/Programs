@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
+
+<head>
    <meta charset="UTF-8" />
    <meta name="viewport" content="width=device-width, initial-scale-1.0" />
    <title>Media Player Neumorphism</title>
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
    <link rel="stylesheet" href="P1 - music player - styles.css" />
-   </head>
-   <body>
+</head>
+
+<body>
 
    <div class="container">
 
@@ -18,23 +20,19 @@
                <i class="fa fa-arrow-left"></i>
             </div>
 
-         <h5 class="player__title">playing now</h5>
+            <h5 class="player__title">playing now</h5>
             <div class="player__btn player__btn--small grey">
                <i class="fa fa-bars"></i>
             </div>
          </div>
 
          <div class="player__album">
-            <img 
-            src="image.png" 
-            alt="Album Cover" 
-            class="player__img"
-            >
+            <img src="image.png" alt="Album Cover" class="player__img">
          </div>
 
          <h2 class="player__artist">NCV</h2>
          <h3 class="player__song">Random Music</h3>
-         
+
 
          <input type="range" value="20" min=0 class="player__level" />
 
@@ -44,12 +42,14 @@
             <div class="end">05:12</div>
          </div>
 
-         <audio class="player__audio"  id="audio" controls>
-         <source src="Music/Nueva carpeta/Nirvana - Something In The Way_Full Epic Trailer Version_ _ The Batman Trailer Song.mp3" type="audio/mpeg" />
+         <audio class="player__audio" id="audio" controls>
+            <source
+               src="Music/Nueva carpeta/Nirvana - Something In The Way_Full Epic Trailer Version_ _ The Batman Trailer Song.mp3"
+               type="audio/mpeg" />
          </audio>
-         
+
          <div class="player__controls">
-            <div class="player__btn player__btn--medium grey" >
+            <div class="player__btn player__btn--medium grey">
                <i class="fa fa-backward"></i>
             </div>
 
@@ -58,7 +58,7 @@
                <i class="fa fa-pause pause-btn hide"></i>
             </div>
 
-            <div class="player__btn player__btn--medium grey" >
+            <div class="player__btn player__btn--medium grey">
                <i class="fa fa-forward"></i>
             </div>
 
@@ -68,6 +68,7 @@
       </div>
    </div>
 
-   <script src="P1 - music player - scripts.js"></script>   
-   </body>
+   <script src="P1 - music player - scripts.js"></script>
+</body>
+
 </html>

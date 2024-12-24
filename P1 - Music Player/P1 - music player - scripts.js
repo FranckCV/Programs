@@ -6,7 +6,7 @@ playPause.addEventListener("click", () => {
         playPause.querySelector(".pause-btn").classList.toggle("hide");
         playPause.querySelector(".play-btn").classList.toggle("hide");
         audio.play();
-    }   else {
+    } else {
         audio.pause();
         playPause.querySelector(".pause-btn").classList.toggle("hide");
         playPause.querySelector(".play-btn").classList.toggle("hide");
@@ -15,9 +15,9 @@ playPause.addEventListener("click", () => {
 
 var reproductor = document.getElementById("audio");
 
-barra.addEventListener("change",function(ev){	
-    reproductor.volume = ev.currentTarget.value;	
-  },true);
+barra.addEventListener("change", function (ev) {
+    reproductor.volume = ev.currentTarget.value;
+}, true);
 
 
 
