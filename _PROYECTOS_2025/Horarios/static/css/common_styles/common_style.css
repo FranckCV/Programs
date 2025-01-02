@@ -1,53 +1,93 @@
-:root {    
-    /* --height-header1: 8vh; */
-    /* --height-header2: 10vh; */
-    /* --height-nav: 10vh; */
-    /* --height-main-header: calc( var(--height-header1) + var(--height-header2) + var(--height-nav)); */
-    
-    /* --size-bubble-cart: 5vw;
-    --size-bubble-cart-tab: 3.5vw;
-    --size-bubble-cart-pc: 2.1vw;
-
-    --border-article: 50px;
-    --border-title: 70px;
-    --border-item: 25px;
-    --border-product: 10px;
-    --border-tag: 25px;
-    --border-menu: 10px;
-    --border-radius-element: 5px;
-
-    --font-icon-cel: 20px;
-    --font-icon-tab: 2.5vw;
-    --font-icon-pc: 1.55vw; */
-
-    /* --color1: #0C0A3E;
-    --color2: #1e1c7a;
-    --color3: #fff;
-    --color4: #2756f0;
-    --color5: #218aec;
-    --color6: #ffffff;
-    --color7: #040136;
-    --color8: #02011f;
-    --color9: #3532d3;
-    --color10: #2709ac;
-    --color-title1: #00095c;
-    --color-title2: #00223d;
-    --font1: #000;
-    --font2: #fff;
-    --font3: #fff; */
-
+:root {
     --height-header: 20vh;
     --height-footer: 50vh;
     --height-aside: 90vh;
     --height-section: 1vh;
-    --color-background: #2a2b2c;
-    --color1: #006b96;
-    --color2: #002a64;
-    --color3: #c7309a;
+    --color-background: #e4e4e4;
+    --color1: #363636;
+    --color2: #585858;
+    --color3: #007430;
     --color4: #02020e;
 }
 
 
 body {
     font-family: Poppins, sans-serif;
+    font-size: 13px;
 }
+
+a {
+    text-decoration: none;
+}
+
+p {
+    margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    margin: 0;
+}
+
+hr {
+    margin: 10px 0 !important;
+    /* margin-block: 15px; */
+    width: 100%;
+    padding: 0;
+}
+
+button {
+    border: 0;
+    padding-inline: 10px;
+    padding-block: 5px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.btn_agregar {
+    background-color: #005d92;
+    color: white;
+}
+
+.btn_acept {
+    background-color: #009231;
+    color: white;
+}
+
+.btn_red {
+    background-color: red;
+    color: white;
+}
+
+.btn_back {
+    background-color: #6e6e6e;
+    color: white;
+}
+
+.modal_agregar {
+    box-shadow: 0 0 20px #00b84c;
+}
+
+.modal_ver {
+    /* box-shadow: 0 0 20px #2080ee; */
+    box-shadow: 0 0 20px #f8f8f8;
+}
+
+.modal_editar {
+    box-shadow: 0 0 20px #caee00;
+}
+
+.modal_eliminar {
+    box-shadow: 0 0 20px #df2100;
+}
+

@@ -1,11 +1,16 @@
+:root {
+    --width-aside: 15vw;
+    --heigh-header: 65px;
+}
+
 .general_body {
     display: grid;
-    grid-template-columns: 10vw auto;
+    grid-template-columns: var(--width-aside) auto;
+    grid-template-rows: var(--heigh-header) auto;
     grid-template-areas: "body_header body_header"
                          "body_aside body_section"
-                         "body_footer body_footer"
+                         /* "body_footer body_footer" */
     ;
-    /* min-height: 100vh; */
     background-color: var(--color-background);
 }
 
@@ -18,8 +23,7 @@
 header {
     background-color: var(--color1);
     grid-area: body_header;
-    min-height: 10vh;
-    /* min-height: var(--height-header); */
+    height: var(--heigh-header);
     width: 100%;
     position: sticky; 
     z-index: 9999;
@@ -29,24 +33,27 @@ header {
 
 aside {
     background-color: var(--color2);
-    min-height: var(--height-aside);
     grid-area: body_aside;
-    /* min-height: auto; */
+    flex-direction: column;
+    width: var(--width-aside);
+    position: fixed;
+    height: 100%;
+    overflow-y: scroll;
+    z-index: 50;
+    gap: 20px;
+}
+
+aside::-webkit-scrollbar {
+    display: none;
 }
 
 section {
-    /* background-color: var(--color3); */
     min-height: var(--height-section);
-    /* min-height: 60vh; */
     grid-area: body_section;
     padding: 30px;
-}
-
-footer {
-    background-color: var(--color4);
-    grid-area: body_footer;   
-    min-height: 10vh;
-    /* min-height: var(--height-footer); */
+    min-height: 100%;
+    overflow-x: hidden;
+    position: relative;
 }
 
 
@@ -63,7 +70,26 @@ footer {
 
 /* ASIDE */
 
+.aside_item {
+    display: grid;
+    text-align: center;
+    /* font-size: 85%; */
+    grid-template-rows: auto;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    grid-template-columns: 1fr 1fr;
+    color: white;
+    border-radius: 20px;
+    background-color: #2b2b2b;
+    padding-inline: 10px;
+    padding-block: 5px;
+}
 
+.aside_item p {
+    padding: 0;
+    margin: 0;
+}
 
 /* SECTION */
 
@@ -75,5 +101,5 @@ section.general_element {
 
 
 .asdsad {
-    color: rgb(255, 255, 0);
+    color: #c4c400;
 }

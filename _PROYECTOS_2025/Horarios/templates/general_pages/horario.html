@@ -21,21 +21,24 @@ Horario
         <th>Sábado</th>
     </thead>
     <tbody>
-        {% for hora in range(24) %}
+        {% for hora in horas %}
         <tr>
             <td>
                 <div class="cell space_hour">
-                    {{hora}}:00
+                    {{hora}}:00 - {{hora+1}}:00
                 </div>
             </td>
-            {% for dia in range(7) %}
+            {% for dia in dias %}
             <td>
                 <div class="cell">
                     {% for tiempo in horarios %}
-                    {% if tiempo.1 == dia and (tiempo.2 <= hora and tiempo.3> hora) %}
-                        <p style="background-color: {{tiempo.8}}">{{tiempo.7}}</p>
+                        {% if tiempo.1 == dia and (tiempo.2 <= hora and tiempo.3> hora) %}
+                            <p style="background-color: color-mix(in srgb,  {{tiempo.9}}  80%, transparent 20%); color: {{tiempo.10}} ;">
+                                {{tiempo.7}} - {{tiempo.4}}
+                                 <!-- ({{tiempo.13}}) -->
+                            </p>
                         {% endif %}
-                        {% endfor %}
+                    {% endfor %}
                 </div>
             </td>
             {% endfor %}
@@ -43,6 +46,11 @@ Horario
         {% endfor %}
     </tbody>
 </table>
+
+<div class="cuadro" style="background-color: black; height: 300px; width: 700px;">
+
+</div>
+
 {% endblock %}
 
 {% block scripts %}

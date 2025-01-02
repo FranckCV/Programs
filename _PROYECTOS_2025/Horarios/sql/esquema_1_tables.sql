@@ -43,10 +43,10 @@ create table curso_curso (
   cursoid_pre));
 create table alumno (
   id          int(11) not null auto_increment, 
-  nombres     int(11), 
-  apellidos   int(11), 
-  codigo      int(11), 
-  contrasenia int(11), 
+  nombres     varchar(150) not null, 
+  apellidos   varchar(150) not null, 
+  codigo      varchar(20) not null, 
+  contrasenia varchar(150) not null, 
   primary key (id));
 create table matricula (
   id             int(11) not null auto_increment, 

@@ -2,7 +2,6 @@ from controladores.bd import obtener_conexion
 
 def obtener_horarios():
     conexion = obtener_conexion()
-    # try:
     with conexion.cursor() as cursor:
         sql = '''
             select 
@@ -14,93 +13,91 @@ def obtener_horarios():
                 gr.semestrecodigo, 
                 cur.nombre, 
                 cur.abreviacion, 
-                cur.color, 
-                cur.ciclo, 
+                cur.ciclo,
+                col.color_fondo,
+                col.color_texto,
                 doc.nombres, 
-                doc.apellidos 
+                doc.apellidos,
+                gr.id
             from grupo gr 
             inner join docente doc on doc.id = gr.docenteid 
             inner join curso cur on cur.id = gr.cursoid 
             inner join horario hor on hor.grupoid = gr.id
+            inner join color col on col.id = cur.colorid
+            order by gr.semestrecodigo
         '''
         cursor.execute(sql)
         elementos = cursor.fetchall() 
     conexion.close()
     return elementos
-    # except Exception as e:
-    #     return e
-
-# def obtener_cantidad_grupo():
-#     conexion = obtener_conexion()
-#     try:
-#         with conexion.cursor() as cursor:
-#             sql= "select id, nomgrupo from grupo"
-#             cursor.execute(sql)
-#             grupos = cursor.fetchall()
-#         conexion.close()
-#         return grupos
-#     except Exception as e:
-#         return e
 
 
-
-# def funcion_prueba_jpd():
-#     conexion = obtener_conexion()
-#     try:
-#         with conexion.cursor() as cursor:
-#             sql = """
-#                 SELECT e.id AS ElementoID, e.nomElemento AS Elemento, COUNT(c.id) AS CantidadCualidades
-#                 FROM elemento e
-#                 LEFT JOIN cualidad c ON e.id = c.ELEMENTOid
-#                 GROUP BY e.id, e.nomElemento;
-#             """
-#             cursor.execute(sql)
-#             pruebita = cursor.fetchall() 
-#         conexion.close()
-#         return pruebita
-#     except Exception as e:
-#         return e
-
-
-# def obtener_grupo_incompleto(participante_id):
-#     conexion = obtener_conexion()
-#     try:
-#         with conexion.cursor() as cursor:
-#             sql = """
-#                 SELECT g.id
-#                 FROM grupo g
-#                 LEFT JOIN (
-#                     SELECT s.AGRUPACIONGRUPOid, COUNT(*) AS seleccionadas
-#                     FROM seleccion s
-#                     WHERE s.PARTICIPANTEid = %s
-#                     GROUP BY s.AGRUPACIONGRUPOid
-#                 ) AS conteo
-#                 ON g.id = conteo.AGRUPACIONGRUPOid
-#                 WHERE IFNULL(conteo.seleccionadas, 0) < (SELECT COUNT(*) FROM agrupacion WHERE GRUPOid = g.id)
-#                 LIMIT 1;
-#             """
-#             cursor.execute(sql, (participante_id,))
-#             resultado = cursor.fetchone()
-#             return resultado[0] if resultado else None
-#     except Exception as e:
-#         print(f"Error al obtener el grupo incompleto: {str(e)}")
-#         return None
-#     finally:
-#         conexion.close()
+def obtener_horario_semestre(semestre):
+    conexion = obtener_conexion()
+    with conexion.cursor() as cursor:
+        sql = '''
+            select 
+                hor.id, 
+                hor.dia, 
+                hor.h_inicio, 
+                hor.h_final, 
+                gr.denominacion, 
+                gr.semestrecodigo, 
+                cur.nombre, 
+                cur.abreviacion, 
+                cur.ciclo,
+                col.color_fondo,
+                col.color_texto,
+                doc.nombres, 
+                doc.apellidos,
+                gr.id
+            from grupo gr 
+            inner join docente doc on doc.id = gr.docenteid 
+            inner join curso cur on cur.id = gr.cursoid 
+            inner join horario hor on hor.grupoid = gr.id
+            inner join color col on col.id = cur.colorid
+            where gr.semestrecodigo = %s
+        '''
+        cursor.execute(sql,semestre)
+        elementos = cursor.fetchall() 
+    conexion.close()
+    return elementos
 
 
-# def obtener_cantidad_maxima_progreso():
-#     conexion = obtener_conexion()
-#     # try:
-#     with conexion.cursor() as cursor:
-#         sql= "select count(*) from grupo"
-#         cursor.execute(sql)
-#         grupos = cursor.fetchone()
-#         numero = grupos[0] * 2
-#     conexion.close()
-#     return numero
-#     # except Exception as e:
-#     #     return e
-    
+def obtener_horario_matricula(matricula):
+    conexion = obtener_conexion()
+    with conexion.cursor() as cursor:
+        sql = '''
+            select 
+                hor.id, 
+                hor.dia, 
+                hor.h_inicio, 
+                hor.h_final, 
+                gr.denominacion, 
+                gr.semestrecodigo, 
+                cur.nombre, 
+                cur.abreviacion, 
+                cur.ciclo,
+                col.color_fondo,
+                col.color_texto,
+                doc.nombres, 
+                doc.apellidos,
+                gr.id
+            from grupo gr 
+            left join docente doc on doc.id = gr.docenteid 
+            left join curso cur on cur.id = gr.cursoid 
+            left join horario hor on hor.grupoid = gr.id
+            left join color col on col.id = cur.colorid
+            left join detalles_matricula det on det.grupoid = gr.id
+            left join matricula mat on mat.id = det.matriculaid
+            where mat.id = %s
+        '''
+        cursor.execute(sql,matricula)
+        elementos = cursor.fetchall() 
+    conexion.close()
+    return elementos
+
+
+
 
 
