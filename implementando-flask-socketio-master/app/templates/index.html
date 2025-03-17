@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Implementando Flask SocketIO</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Tilt+Neon&display=swap"
+      rel="stylesheet" />
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        font-family: "Tilt Neon", cursive;
+        background-color: aliceblue;
+      }
+      .content {
+        width: 100%;
+        margin: 0 auto;
+        text-align: center;
+
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-around;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+      }
+
+      h1 {
+        margin-top: 10px;
+        text-align: center;
+        margin-bottom: 50px;
+      }
+      input {
+        outline: none;
+        padding: 7px;
+      }
+      button {
+        border: none;
+        padding: 10px 20px;
+      }
+      ul {
+        width: 90%;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        margin: 0 auto;
+        padding: 15px 10px;
+        background-color: #fff;
+        box-shadow: 0 2px 15px -3px rgba(0, 0, 0, 0.07),
+          0 10px 20px -2px rgba(0, 0, 0, 0.04) !important;
+        border-radius: 0.5rem !important;
+      }
+
+      li {
+        line-height: 1.5;
+        text-indent: -30px;
+        padding: 8px 0 8px 30px;
+        text-align: left;
+        border-bottom: 1px solid #eee;
+      }
+      .flex-item {
+        width: 50%;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>
+      Implementando Flask SocketIO
+      <hr />
+    </h1>
+
+    <!---->
+    <div class="content">
+      <!--Formulario para enviar mensajes-->
+      <div class="flex-item">
+        <form id="formFlaskSocketIO">
+          <input type="text" id="message" autocomplete="off" />
+          <button>Enviar</button>
+        </form>
+      </div>
+
+      <!--Para pintar los mensajes-->
+      <div class="flex-item">
+        <ul id="list_messages"></ul>
+      </div>
+    </div>
+
+    <!-- Link para socket.io -->
+    <script
+      src="https://cdn.socket.io/4.5.4/socket.io.min.js"
+      integrity="sha384-/KNQL8Nu5gCHLqwqfQjA689Hhoqgi2S84SNUxC3roTe4EhJ9AfLkp8QiQcU8AMzI"
+      crossorigin="anonymous"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const socket = io();
+
+        //Escuchando connect
+        socket.on("connect", function () {
+          console.log("Socket Activo.!");
+        });
+
+        //Escuchando disconnect
+        socket.on("disconnect", function () {
+          console.log("Socket Desconectado.!");
+        });
+
+        document
+          .querySelector("#formFlaskSocketIO")
+          .addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            const message_chat = document.querySelector("#message").value;
+
+            // Emitiendo por message
+            socket.emit("message", message_chat);
+            document.querySelector("#message").value = "";
+          });
+
+        // Escuchando por message
+        socket.on("message", (message) => {
+          console.log(message);
+          var li = document.createElement("li");
+          li.textContent = message;
+          document.querySelector("#list_messages").appendChild(li);
+        });
+      });
+    </script>
+  </body>
+</html>

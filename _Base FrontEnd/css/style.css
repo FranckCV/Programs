@@ -1,0 +1,37 @@
+.general_body {
+    display: grid;
+    grid-template-areas: "body_header body_header"
+                         "body_aside body_section"
+                         "body_footer body_footer"
+    ;
+    min-height: 100vh;
+}
+
+.general_element {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+header {
+    background-color: #306cc7;
+    grid-area: body_header;
+}
+
+aside {
+    background-color: #30c749;
+    grid-area: body_aside;
+}
+
+section {
+    background-color: #c7309a;
+    grid-area: body_section;
+}
+
+footer {
+    background-color: #c7bd30;
+    grid-area: body_footer;    
+}
+
+
+
