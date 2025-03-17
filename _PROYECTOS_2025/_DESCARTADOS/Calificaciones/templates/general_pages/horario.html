@@ -1,0 +1,47 @@
+{% extends "maestra_general.html" %}
+
+{% block titulo %}
+Calendario
+{% endblock %}
+
+{% block estilos %}
+<link rel="stylesheet" href="/static/css/styleTable.css">
+<link rel="stylesheet" href="/static/css/styleCalendar.css">
+{% endblock %}
+
+{% block contenido %}
+<!-- <table>
+    <thead>
+        <th>Horas</th>
+        <th>Domingo</th>
+        <th>Lunes</th>
+        <th>Martes</th>
+        <th>Miercoles</th>
+        <th>Jueves</th>
+        <th>Viernes</th>
+        <th>Sábado</th>
+    </thead>
+    <tbody>
+        <tr>
+            <th class="space_hour">0</th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </tbody>
+</table> -->
+
+<div id="grid">
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/scriptHorario.js"></script>
+<!-- <script>
+</script> -->
+{% endblock %}

@@ -1,5 +1,35 @@
 
 
+# import base64
+# with open("DNI_AB.xlsx", "rb") as image_file:
+#     encoded_string = base64.b64encode(image_file.read())
+# print(encoded_string)
+
+
+
+file = "DNI_AB.xlsx"
+xdxdx = file.read()
+print(xdxdx)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
