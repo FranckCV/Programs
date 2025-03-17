@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socket.IO Test</title>
+    <script src="https://cdn.socket.io/4.6.1/socket.io.min.js"></script>
+</head>
+
+<body>
+    <h1>Tabla Actualizable con Socket.IO</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Puntaje</th>
+            </tr>
+        </thead>
+        <tbody id="dataTable">
+            <!-- Aquí se agregarán las filas dinámicamente -->
+        </tbody>
+    </table>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const socket = io("http://127.0.0.1:5000"); // Conectar con el servidor
+
+            socket.on("connect", () => {
+                console.log("Conexión establecida con el servidor");
+            });
+            // Escuchar el evento para actualizar la tabla
+            socket.on("update_table", (data) => {
+                const tableBody = document.getElementById("dataTable");
+                tableBody.innerHTML = ``; // Limpiar contenido previo
+
+                // Insertar nuevas filas en la tabla
+                data.data.forEach((row) => {
+                    const tr = document.createElement("tr");
+                    tr.innerHTML = `
+                        <td>${row.id}</td>
+                        <td>${row.name}</td>
+                        <td>${row.score}</td>
+                    `;
+                    tableBody.appendChild(tr);
+                });
+            });
+
+            // Enviar evento al servidor para obtener datos iniciales
+            socket.emit("get_data");
+
+            socket.on("disconnect", () => {
+                console.log("Desconectado del servidor");
+            });
+
+            console.log(socket.connected);
+        });
+    </script>
+</body>
+
+</html>
