@@ -1,0 +1,191 @@
+:root {  
+    --height-header: 20vh;
+    --height-footer: 50vh;
+    --height-aside: 90vh;
+    --height-section: 1vh;
+    --width-aside: 17.5vw;
+    --color-background: #272727;
+    --color1: #006b96;
+    --color2: #141414;
+    --color3: #c7309a;
+    --color4: #02020e;
+}
+
+
+body {
+    font-family: Poppins, sans-serif;
+    font-size: 10px;
+}
+
+.general_body {
+    display: grid;
+    grid-template-columns: var(--width-aside) auto;
+    grid-template-areas: "body_aside body_section"
+    ;
+    /* min-height: 100vh; */
+    background-color: var(--color-background);
+}
+
+.general_element {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+section {
+    /* background-color: var(--color3); */
+    min-height: var(--height-section);
+    /* min-height: 60vh; */
+    grid-area: body_section;
+    padding: 20px;
+}
+
+
+#listaCursos {
+    background-color: var(--color2);
+    min-height: var(--height-aside);
+    grid-area: body_aside;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 999;
+    overflow-y: scroll;
+    height: 100%;
+    width: var(--width-aside);
+    color: white;
+    justify-content: flex-start;
+}
+
+#listaCursos p {
+    margin: 0;
+}
+
+/* #listaCursos div  , */
+.ciclo ,
+.ciclo p,
+.curso ,
+.curso p ,
+.grupos ,
+.grupo {
+    border: 1px solid white;
+    padding-inline: 20px;
+    padding-block: 10px;
+    text-align: center;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.nom_ciclo {
+    color: var(--color2);
+}
+
+.nom_ciclo ,
+.nom_curso {
+    background-color: white;
+    font-weight: bold;
+}
+
+.ciclo {
+    gap: 30px;
+}
+
+.curso ,
+.ciclo,
+.grupos {
+    border: 0;
+    padding: 0;
+}
+
+.grupo {
+    display: grid;
+    grid-template-columns: 6fr 1fr;
+    align-items: center;
+    justify-items: center;
+    /* flex-direction: row; */
+}
+
+.grupo div {
+    display: flex;
+    align-items: center;
+}
+
+/* .grupo {
+    color: white;
+    border: 1px solid white;
+    display: grid;
+    width: 100%;
+    border-radius: 10px;
+    padding-inline: 10px;
+    padding-block: 5px;
+    justify-items: center;
+    align-items: center;
+    text-align: center;
+} */
+
+
+
+
+
+#grid {
+    display: grid;
+    gap: 10px;
+    color: white;
+}
+
+.cell {
+    border: 1px solid #ccc;
+    transition: background-color 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    border-radius: 10px;
+    gap: 10px;
+}
+
+.cell div {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    border-radius: 7px;
+    /* height: 30px; */
+    padding-block: 5px;
+    padding-inline: 10px;
+    border: 1px solid white;
+}
+
+.cell_1 {
+    background-color: #7700ff;
+    /* width: 100px; */
+    /*  */
+}
+
+.cell_2 {
+    background-color: #006eff;
+}
+
+.cell_1.cell_2 {
+    background-color: blue;
+}
+
+.pasado {
+    background-color: black ;
+}
+
+.cell.error {
+    background-color: red
+}
+
+

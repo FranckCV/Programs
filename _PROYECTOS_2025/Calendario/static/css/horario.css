@@ -1,0 +1,86 @@
+.cell {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    background-color: #18181896;
+    border-radius: 1px;
+}
+
+.grid-container {
+    overflow-x: auto;
+    overflow-y: auto;
+    max-height: 75vh;
+    width: 92.5vw;
+    position: relative;
+}
+
+.grid-container::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.grid-container::-webkit-scrollbar-thumb {
+    background-color: #334f68;
+}
+
+.grid-container::-webkit-scrollbar-track {
+    background-color: #f0f0f0;
+}
+
+.grid-container {
+    scrollbar-width: thin;
+    scrollbar-color: #334f68 #f0f0f0;
+}
+
+#grid {
+    display: grid;
+    color: white;
+    grid-column-gap: 1px;
+    grid-row-gap: 1px;
+    /* width: 100%; */
+}
+
+.grid_head {
+    background-color: rgb(19, 19, 19);
+    text-align: center;
+    color: white;
+    align-items: center;
+    vertical-align: middle;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+}
+
+.space_hour ,
+.space_minute {
+    position: sticky;
+    z-index: 10;
+}
+
+.space_hour {
+    background-color: #383838;
+    color: white;
+    left: 0;
+}
+
+.space_minute {
+    background-color: #333333b2;
+    font-size: 70%;
+}
+
+
+.empty_cell {
+    background-color: #94949488;
+}
+
+
+.grid_head.space_hour {
+    z-index: 50;
+    background-color: black;
+}
+
+
