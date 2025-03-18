@@ -7,13 +7,13 @@
     flex-direction: column;
     text-align: center;
     background-color: #18181896;
-    border-radius: 1px;
+    border-radius: 3px;
 }
 
 .grid-container {
     overflow-x: auto;
     overflow-y: auto;
-    max-height: 75vh;
+    max-height: 80vh;
     width: 92.5vw;
     position: relative;
 }
@@ -39,48 +39,82 @@
 #grid {
     display: grid;
     color: white;
-    grid-column-gap: 1px;
-    grid-row-gap: 1px;
-    /* width: 100%; */
 }
 
 .grid_head {
-    background-color: rgb(19, 19, 19);
     text-align: center;
     color: white;
     align-items: center;
     vertical-align: middle;
     position: sticky;
-    top: 0;
-    z-index: 20;
+    z-index: 700;
 }
 
+.cell_day {
+    background-color: #262626c9;
+}
+
+.cell_date {
+    background-color: #717171b3;
+}
+
+.colday ,
 .space_hour ,
 .space_minute {
     position: sticky;
-    z-index: 10;
+    z-index: 800;
 }
 
 .space_hour {
-    background-color: #383838;
     color: white;
-    left: 0;
+}
+
+.space_hour:nth-child(odd) {
+    background-color: #383838ab;
+}
+
+.space_hour:nth-child(even) {
+    background-color: #262626b5;
 }
 
 .space_minute {
     background-color: #333333b2;
-    font-size: 70%;
+    font-size: 80%;
 }
 
+.colday {
+    writing-mode: vertical-rl; 
+    text-orientation: upright;
+}
+
+.colday:nth-child(odd) {
+    background-color: #1b1b1bd4;
+}
+
+.colday:nth-child(even) {
+    background-color: #262626c8;
+}
 
 .empty_cell {
-    background-color: #94949488;
+    background-color: #94949459;
 }
 
 
 .grid_head.space_hour {
-    z-index: 50;
+    z-index: 1000;
     background-color: black;
 }
+
+.actividad {
+    background-color: #2813e6b3;
+    z-index: 99;
+}
+
+
+
+
+
+
+
 
 

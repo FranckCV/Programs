@@ -13,55 +13,65 @@ Horario
 <div class="grid-container">
     <div id="grid" style="
         grid-template-columns: repeat( {{CANTCOLSAD}} , {{sizeCOLad}}) repeat({{cantCol}}, {{sizeCOL}}); 
-        grid-template-rows: repeat( {{CANTROWSAD}} , {{sizeCOLad}} ) repeat({{cantRow}} , {{sizeROW}});
+        grid-template-rows: repeat( {{CANTROWSAD}} , {{sizeROWad}} ) repeat({{cantRow}} , {{sizeROW}});
+        grid-gap: {{sizeGAP}};
         ">
 
         {% for space in range(spaces) %}
             <div class="cell empty_cell"></div>
         {% endfor %}
 
-        {% for dia in BASE_DIAS %}
-            {% for hora in BASE_horas %}
-                {% for minuto in BASE_MINUTOS %}
-                    <div class="cell empty_cell"></div>
-                {% endfor %}
-            {% endfor %}
-        {% endfor %}
+        <div class="cell grid_head space_hour" style="grid-area: {{CANTROWSAD - 1}} / 1 / {{CANTROWSAD }} / {{CANTCOLSAD + 1 }} ; top: 0; left: 0; ">DIA</div>
+        <div class="cell grid_head space_hour" style="grid-area: {{CANTROWSAD}} / 1 / {{CANTROWSAD + 1}} / {{CANTCOLSAD + 1}} ; top: calc({{sizeROWad}} + {{sizeGAP}}); left: 0; ">HORA</div>
 
-        <div class="cell grid_head space_hour" style="grid-area: {{CANTROWSAD}} / {{CANTCOLSAD - 1}} / {{CANTROWSAD + 1}} / {{CANTCOLSAD + 1}} ;">HORA</div>
-        {% for dia in BASE_DIAS %}
-            <div class="cell grid_head" 
-            style="grid-area: {{CANTROWSAD}} / {{loop.index0 + CANTCOLSAD + 1}} / {{CANTROWSAD + 1}} / {{loop.index0 + 1 + CANTCOLSAD + 1}} ;"
+        {% for dia in BASE_dias %}
+            <div class="cell grid_head cell_day" 
+            style="grid-area: {{CANTROWSAD-1}} / {{loop.index0 + CANTCOLSAD + 1}} / {{CANTROWSAD }} / {{loop.index0 + 1 + CANTCOLSAD + 1}} ; top: 0 ;  "
             >
                 {{ BASE_NOMBRE_DIAS[dia % 7] }}
             </div>
+
+            <div class="cell grid_head cell_date" 
+            style="grid-area: {{CANTROWSAD}} / {{loop.index0 + CANTCOLSAD + 1}} / {{CANTROWSAD +1 }} / {{loop.index0 + 1 + CANTCOLSAD + 1}} ; top: calc({{sizeROWad}} + {{sizeGAP}}); "
+            >
+                {{ BASE_fechas[loop.index0] }}
+            </div>
+
         {% endfor %}
 
+        <div class="cell colday"
+            style="grid-area: {{CANTROWSAD + 1}} / 1 / {{ (23 - BASE_horas[0] + 1) * (cantMin ) + CANTROWSAD + 1}} / 2 ; left: 0 ; ">
+            {{ BASE_NOMBRE_DIAS[ (DIF_DAYS + BASE_dias[0]) % 7 ] }}
+        </div>
+
+        <div class="cell colday"
+            style="grid-area: {{ (23 - BASE_horas[0] + 1) * (cantMin ) + CANTROWSAD + 1 }} / 1 / {{ (23 - BASE_horas[0] + 1 + BASE_horas[23] + 1) * cantMin + CANTROWSAD + 1  }} / 2 ; left: 0 ; ">
+            {{ BASE_NOMBRE_DIAS[ (DIF_DAYS + BASE_dias[0] + 1) % 7 ] }}
+        </div> 
+
         {% for hora in BASE_horas %}
-            {% set hora_index = loop.index0 %}
+            {% set hora_index = loop.index0 %} 
             <div class="cell space_hour"
-                style="grid-area: {{ (hora_index * cantMin) + CANTROWSAD + 1  }} / {{CANTCOLSAD-1}} / {{ ((hora_index + 1) * cantMin) + CANTROWSAD + 1}} / {{CANTCOLSAD}} ;">
+                style="grid-area: {{ (hora_index * cantMin) + CANTROWSAD + 1  }} / {{CANTCOLSAD-1}} / {{ ((hora_index + 1) * cantMin) + CANTROWSAD + 1}} / {{CANTCOLSAD}} ; left: calc( {{sizeCOLad}} + {{sizeGAP}}) ; ">
                 {{ hora }}
             </div>
-            {% for minuto in BASE_MINUTOS %}
-                {% set minuto_index = BASE_MINUTOS.index(minuto) %}
+            {% for minuto in BASE_minutos %}
+                {% set minuto_index = BASE_minutos.index(minuto) %}
                 <div data-minute="{{ minuto }}" class="cell space_minute" 
-                    style="grid-area: {{ (hora_index * cantMin) + minuto_index + CANTROWSAD + 1 }} / {{CANTCOLSAD}} / {{ (hora_index * cantMin) + minuto_index + CANTROWSAD+2 }} / {{CANTCOLSAD+1}} ; left: {{sizeCOLad}};">
+                    style="grid-area: {{ (hora_index * cantMin) + minuto_index + CANTROWSAD + 1 }} / {{CANTCOLSAD}} / {{ (hora_index * cantMin) + minuto_index + CANTROWSAD+2 }} / {{CANTCOLSAD+1}} ; left: calc( (  {{sizeCOLad}} + {{sizeGAP}}) * 2) ; ">
                     {{ minuto }}
                 </div>
             {% endfor %}
         {% endfor %}
 
-
-        
-        {% for dia in BASE_DIAS %}
+        {% for dia in BASE_dias %}
             {% for act in actividades %}
                 {% if act[3] == dia %}
                     {% set hora_index_ini = BASE_horas.index(act[4]) %}
                     {% set hora_index_fin = BASE_horas.index(act[6]) %}
-                    {% set columna_dia = BASE_DIAS.index(act[3]) + 3 %}
-                    {% set fila_inicio = (hora_index_ini * cantMin) + BASE_MINUTOS.index(act[5]) + 2 %}
-                    {% set fila_fin = (hora_index_fin * cantMin) + BASE_MINUTOS.index(act[7]) + 2 %}
+                    {% set columna_dia = BASE_dias.index(act[3]) + CANTCOLSAD + 1 %}
+                    {% set fila_inicio = (hora_index_ini * cantMin) + BASE_minutos.index(act[5]) + CANTROWSAD + 1 %}
+                    {% set fila_fin = (hora_index_fin * cantMin) + BASE_minutos.index(act[7]) + CANTROWSAD + 1  %}
                     
                     <div class="cell actividad"
                     style="grid-area: {{fila_inicio}} / {{columna_dia}} / {{fila_fin}} / {{columna_dia + 1}};">
@@ -71,11 +81,6 @@ Horario
                 {% endif %}
             {% endfor %}
         {% endfor %}
-    
-
-
-
-
 
     </div>
 </div>
@@ -87,4 +92,21 @@ Horario
 
 {% block scripts %}
 <script src="/static/js/general_script.js"></script>
+
+<script>
+    const clases = [
+        '.empty_cell' ,
+        '.colday' ,
+        '.space_hour' ,
+        '.space_minute' ,
+        '.grid_head' ,
+    ]
+
+    for (let clase of clases) {
+        var num = document.querySelectorAll(clase).length;
+        console.log(clase,num);        
+    }
+    
+</script>
+
 {% endblock %}
