@@ -17,10 +17,6 @@ Horario
         grid-gap: {{sizeGAP}};
         ">
 
-        {% for space in range(spaces) %}
-            <div class="cell empty_cell"></div>
-        {% endfor %}
-
         <div class="cell grid_head space_hour" style="grid-area: {{CANTROWSAD - 1}} / 1 / {{CANTROWSAD }} / {{CANTCOLSAD + 1 }} ; top: 0; left: 0; ">DIA</div>
         <div class="cell grid_head space_hour" style="grid-area: {{CANTROWSAD}} / 1 / {{CANTROWSAD + 1}} / {{CANTCOLSAD + 1}} ; top: calc({{sizeROWad}} + {{sizeGAP}}); left: 0; ">HORA</div>
 
@@ -44,10 +40,12 @@ Horario
             {{ BASE_NOMBRE_DIAS[ (DIF_DAYS + BASE_dias[0]) % 7 ] }}
         </div>
 
+        {% if not BASE_horas[0] == 0 %}
         <div class="cell colday"
             style="grid-area: {{ (23 - BASE_horas[0] + 1) * (cantMin ) + CANTROWSAD + 1 }} / 1 / {{ (23 - BASE_horas[0] + 1 + BASE_horas[23] + 1) * cantMin + CANTROWSAD + 1  }} / 2 ; left: 0 ; ">
             {{ BASE_NOMBRE_DIAS[ (DIF_DAYS + BASE_dias[0] + 1) % 7 ] }}
         </div> 
+        {% endif %}
 
         {% for hora in BASE_horas %}
             {% set hora_index = loop.index0 %} 
@@ -56,6 +54,16 @@ Horario
                 {{ hora }}
             </div>
             {% for minuto in BASE_minutos %}
+                {% if 0 <= hora and hora <= BASE_horas[23] %}
+                    {% for dia in BASE_dias %}
+                        <div class="cell empty_cell_2"
+                        style="grid-area: {{ (BASE_horas.index(0) + hora ) * cantMin + CANTROWSAD + 1 + BASE_minutos.index(minuto)   }} / {{ dia + CANTCOLSAD +1 }} / {{ (BASE_horas.index(0) + hora ) * cantMin + CANTROWSAD + 2 +BASE_minutos.index(minuto) }} / {{ dia + CANTCOLSAD + 2}} ;  "
+                        >
+                        <!-- {{dia}} - {{hora}} - {{minuto}}  -->
+                    </div>
+                    {% endfor %}
+                {% endif %}
+
                 {% set minuto_index = BASE_minutos.index(minuto) %}
                 <div data-minute="{{ minuto }}" class="cell space_minute" 
                     style="grid-area: {{ (hora_index * cantMin) + minuto_index + CANTROWSAD + 1 }} / {{CANTCOLSAD}} / {{ (hora_index * cantMin) + minuto_index + CANTROWSAD+2 }} / {{CANTCOLSAD+1}} ; left: calc( (  {{sizeCOLad}} + {{sizeGAP}}) * 2) ; ">
@@ -67,20 +75,71 @@ Horario
         {% for dia in BASE_dias %}
             {% for act in actividades %}
                 {% if act[3] == dia %}
+                
+                    {% set act_nom = act[1] %}
+                    {% set act_desc = act[2] %}
+                    {% set act_time = act[4] ~":"~ ("%02d"|format(act[5])) ~" - "~  act[6] ~":"~ ("%02d"|format(act[7])) %}                 
+                    {% set act_color = act[11] %}
+
                     {% set hora_index_ini = BASE_horas.index(act[4]) %}
                     {% set hora_index_fin = BASE_horas.index(act[6]) %}
                     {% set columna_dia = BASE_dias.index(act[3]) + CANTCOLSAD + 1 %}
                     {% set fila_inicio = (hora_index_ini * cantMin) + BASE_minutos.index(act[5]) + CANTROWSAD + 1 %}
                     {% set fila_fin = (hora_index_fin * cantMin) + BASE_minutos.index(act[7]) + CANTROWSAD + 1  %}
+                
+                    {% if act[4] < BASE_horas[0] and (BASE_horas[0] < act[6] or BASE_horas[23] + 1 == act[6] )  %}
+
+                        {% if CANTROWSAD + 1 != fila_fin %}
+                            <div class="cell actividad"
+                            style="grid-area: {{ CANTROWSAD +1 }} / {{ columna_dia }} / {{ fila_fin }} / {{ columna_dia + 1 }}; background-color: {{act_color}}; ">
+                                <p>{{ act_nom }}</p>
+                                {% if act_desc  %}
+                                    <p>{{ act_desc }}</p>
+                                {% endif  %}
+                                <p>{{ act_time }}</p>
+                            </div>
+                        {% endif %}
+
+                        {% if CANTCOLSAD + 1 != columna_dia %}
+                            <div class="cell actividad"
+                            style="grid-area: {{ fila_inicio }} / {{ columna_dia - 1 }} / {{ 24 * cantMin + CANTROWSAD+ 1 }} / {{ columna_dia }}; background-color: {{act_color}}; ">
+                                <p>{{ act_nom }}</p>
+                                {% if act_desc  %}
+                                    <p>{{ act_desc }}</p>
+                                {% endif  %}
+                                <p>{{ act_time }}</p>
+                            </div>
+                        {% endif %}
+                        
+                    {% elif 0 < act[4]  %}
+                        {% if CANTCOLSAD + 1 != columna_dia %}
+                            <div class="cell actividad"
+                            style="grid-area: {{fila_inicio}} / {{columna_dia - 1 }} / {{fila_fin}} / {{columna_dia }}; background-color: {{act_color}}; ">
+                                <p>{{ act_nom }}</p>
+                                {% if act_desc  %}
+                                    <p>{{ act_desc }}</p>
+                                {% endif  %}
+                                <p>{{ act_time }}</p>
+                            </div>
+                        {% endif %}
+                    {% else %}
+                        
+                        <div class="cell actividad"
+                        style="grid-area: {{fila_inicio}} / {{columna_dia }} / {{fila_fin}} / {{columna_dia + 1 }}; background-color: {{act_color}}; ">
+                            <p>{{ act_nom }}</p>
+                            {% if act_desc  %}
+                                <p>{{ act_desc }}</p>
+                            {% endif  %}
+                            <p>{{ act_time }}</p>
+                        </div>
+
+                    {% endif %}
                     
-                    <div class="cell actividad"
-                    style="grid-area: {{fila_inicio}} / {{columna_dia}} / {{fila_fin}} / {{columna_dia + 1}};">
-                        <p>{{ act[1] }}</p>
-                        <p>{{ act[2] }}</p>
-                    </div>
                 {% endif %}
             {% endfor %}
         {% endfor %}
+        
+        
 
     </div>
 </div>
@@ -94,8 +153,12 @@ Horario
 <script src="/static/js/general_script.js"></script>
 
 <script>
+
+    
+
     const clases = [
         '.empty_cell' ,
+        '.empty_cell_2' ,
         '.colday' ,
         '.space_hour' ,
         '.space_minute' ,
@@ -107,6 +170,15 @@ Horario
         console.log(clase,num);        
     }
     
+    
+    // document.addEventListener('DOMContentLoaded',() => {
+    //     document.querySelectorAll('.cell.empty_cell').forEach(cell => {
+    //         if (cell.offsetHeight === 0) {
+    //             cell.style.display = 'none'; 
+    //         }
+    //     });
+    // });
+
 </script>
 
 {% endblock %}

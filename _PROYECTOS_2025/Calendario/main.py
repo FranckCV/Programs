@@ -10,26 +10,27 @@ app = Flask(__name__, template_folder='templates')
 
 BASE_NOMBRE_DIAS = ('DOMINGO','LUNES','MARTES','MIERCOLES','JUEVES','VIERNES','SABADO')
 TOTAL_DAYS = 7
-DIF_DAYS = 1
-DIF_HOURS = 1
-TIME_MIN = 15
+DIF_DAYS = 0
+DIF_HOURS = 0
 CANTCOLSAD = 3
 CANTROWSAD = 2
 
-sizeCOL   = '150px'
-sizeCOLad = '30px'
-sizeROW   = '17px'
-sizeROWad = '17px'
-sizeGAP   = '3px'
+HOUR_INI = 5
+MIN_INI = 5
 
+sizeCOL   = '150px'
+sizeCOLad = '20px'
+sizeROW   = '20px'
+sizeROWad = '20px'
+sizeGAP   = '1px'
 
 now = datetime.now()
 date_day = now.weekday()
 current_day = ( date_day + 1 ) % 7
-# current_hour = 13 
 current_hour = now.hour   
 current_minute = now.minute
 
+time_min = controlador.obtener_max_minuto_acts()
 
 
 ##########_ FUNCIONES _##########
@@ -53,9 +54,10 @@ def listarHoras():
 def listarMinutos():
     lista = []
     for min in range(60) :
-        if min % TIME_MIN == 0:
+        if min % time_min == 0:
             lista.append(min)
     return lista
+
 
 def listarFechas():
     lista = []
@@ -73,16 +75,16 @@ BASE_fechas = listarFechas()
 
 
 
-
 def actualizar_tiempo():
-    global now, current_day, current_hour, current_minute, BASE_dias, BASE_horas, BASE_minutos , BASE_fechas
+    global now, current_day, current_hour, current_minute, BASE_dias, BASE_horas, BASE_minutos , BASE_fechas , time_min
     
     now = datetime.now()
     date_day = now.weekday()
     current_day = (date_day + 1) % 7 
-    # current_hour = 13
     current_hour = now.hour
     current_minute = now.minute
+
+    time_min = controlador.obtener_max_minuto_acts()
 
     BASE_dias = listarDias()
     BASE_horas = listarHoras()
@@ -98,12 +100,13 @@ def index():
     actualizar_tiempo()
 
     actividades = controlador.obtener_acts()
+
     cantCol = len(BASE_dias)
     cantRow = ( len(BASE_horas) * len(BASE_minutos) )
     cantHor = len(BASE_horas)
     cantMin = len(BASE_minutos)
-    spaces = cantCol * cantRow
-    # print(spaces)
+    spaces = cantCol * cantRow 
+    
     return render_template(
         "horario.html" , 
         spaces = spaces , 
@@ -124,7 +127,11 @@ def index():
         sizeROW = sizeROW ,
         sizeROWad = sizeROWad ,
         DIF_DAYS = DIF_DAYS ,
+        DIF_HOURS = DIF_HOURS ,
         sizeGAP = sizeGAP , 
+        current_day = current_day ,
+        current_hour = current_hour ,
+        current_minute = current_minute , 
 
         )
 
