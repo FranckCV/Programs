@@ -7,7 +7,7 @@
     flex-direction: column;
     text-align: center;
     background-color: #18181896;
-    border-radius: 3px;
+    border-radius: 2px;
 }
 
 .grid-container {
@@ -99,6 +99,9 @@
     background-color: #94949459;
 }
 
+.empty_cell_2 {
+    background-color: #00000051;
+}
 
 .grid_head.space_hour {
     z-index: 1000;
@@ -106,8 +109,9 @@
 }
 
 .actividad {
-    background-color: #2813e6b3;
+    /* background-color: #b725c46e; */
     z-index: 99;
+    padding: 10px;
 }
 
 
