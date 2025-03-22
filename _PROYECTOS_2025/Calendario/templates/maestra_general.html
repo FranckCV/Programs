@@ -10,24 +10,23 @@
     <link rel="stylesheet" href="/static/css/common_styles/fontawesome.min.css" />
     <link rel="stylesheet" href="/static/css/common_styles/fonts.css" />
     <link rel="stylesheet" href="/static/css/common_styles/common_style.css" />
-    <link rel="stylesheet" href="/static/css/general_style.css" />
     {% block estilos %}
     {% endblock %}
     <title>
         {% block titulo %}
-        {% endblock %} | Modelos de Matriculas
+        {% endblock %} |
     </title>
 </head>
 
 <body class="general_body">
     <header class="general_element">
+        a
     </header>
 
     <aside class="general_element">
-        {% for mats in matriculas %}
-        <a class="aside_item" href="{{url_for('horario_matricula',mat_id=mats.0)}}">
-            <p>Matricula</p>
-            <p>{{mats.1}}</p>
+        {% for enlace in ENLACES_MENU %}
+        <a class="aside_item" href="{{url_for(enlace)}}">
+            <p>{{ enlace | upper }}</p>
         </a>
         {% endfor %}
     </aside>
@@ -41,16 +40,41 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
         integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
         crossorigin="anonymous"></script>
     <!-- <script src="/static/js/common_scripts/bootstrap.bundle.min.js"></script> -->
     <!-- <script src="/static/js/common_scripts/bootstrap.min.js"></script> -->
     <script src="/static/js/common_scripts/common_script.js"></script>
-    <script src="https://cdn.socket.io/4.5.1/socket.io.min.js"></script>
+    <!-- <script src="https://cdn.socket.io/4.5.1/socket.io.min.js"></script> -->
+
+    <script>
+        function ajustarColorTexto(div) {
+            let bgColor = window.getComputedStyle(div).backgroundColor;
+
+            let rgb = bgColor.match(/\d+/g).map(Number);
+
+            let brillo = (rgb[0] * 0.299 + rgb[1] * 0.587 + rgb[2] * 0.114);
+
+            div.style.color = brillo > 128 ? 'black' : 'white';
+        }
+
+        function pintarCeldasxClase(clase) {
+            document.querySelectorAll('.' + clase).forEach(div => {
+                if (div) {
+                    ajustarColorTexto(div);
+                }
+            });
+        }
+
+        pintarCeldasxClase('cuadro_horario');
+        pintarCeldasxClase('tarea');
+
+    </script>
+
     {% block scripts %}
     {% endblock %}
 

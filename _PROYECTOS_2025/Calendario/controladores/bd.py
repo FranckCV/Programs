@@ -7,3 +7,17 @@ def obtener_conexion():
                                 db='bd_proyecto'
                                 # db='bd_horario'
                                 )
+
+
+
+
+
+
+# def obtener_conexion():
+#     return pymysql.connect(host='FranckCv.mysql.pythonanywhere-services.com',
+#                                 user='FranckCv',
+#                                 password='mysql2025',
+#                                 db='FranckCv$bd_proyecto')
+
+
+
