@@ -18,8 +18,10 @@
     - Arreglar en los demas
   - Horario 
     - Mejorar renderizado horario
+    - CRUD
   - Tareas
     - Rnederizado
+    - CRUD
     - Agregar actividades recientes 
   - Sin fecha
     - Considerar eliminar la pagina
